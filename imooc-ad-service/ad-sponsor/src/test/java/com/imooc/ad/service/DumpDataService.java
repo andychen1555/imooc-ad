@@ -103,23 +103,22 @@ public class DumpDataService {
     List<AdPlanTable> planTables = new ArrayList<>();
 
     adPlans.forEach(
-        p -> new AdPlanTable(
+        p -> planTables.add(new AdPlanTable(
             p.getId(),
             p.getUserId(),
             p.getPlanStatus(),
             p.getStartDate(),
             p.getEndDate()
-        )
+        ))
     );
 
     Path path = Paths.get(fileName);
 
-    try (BufferedWriter writer = Files.newBufferedWriter(path);) {
+    try (BufferedWriter writer = Files.newBufferedWriter(path)) {
       for (AdPlanTable adPlanTable : planTables) {
         writer.write(JSON.toJSONString(adPlanTable));
         writer.newLine();
       }
-      writer.close();
     } catch (IOException e) {
       log.error("dumpAdPlanTable error");
     }
@@ -150,7 +149,6 @@ public class DumpDataService {
         writer.write(JSON.toJSONString(unitTable));
         writer.newLine();
       }
-      writer.close();
     } catch (IOException ex) {
       log.error("dumpAdUnitTable error");
     }
@@ -183,7 +181,6 @@ public class DumpDataService {
         writer.write(JSON.toJSONString(creativeTable));
         writer.newLine();
       }
-      writer.close();
     } catch (IOException ex) {
       log.error("dumpAdCreativeTable error");
     }
@@ -210,7 +207,6 @@ public class DumpDataService {
         writer.write(JSON.toJSONString(creativeUnitTable));
         writer.newLine();
       }
-      writer.close();
     } catch (IOException ex) {
       log.error("dumpAdCreativeUnit error");
     }
@@ -238,7 +234,6 @@ public class DumpDataService {
         writer.write(JSON.toJSONString(unitDistrictTable));
         writer.newLine();
       }
-      writer.close();
     } catch (IOException ex) {
       log.error("dumpAdUnitDistrictTable error");
     }
@@ -265,7 +260,6 @@ public class DumpDataService {
         writer.write(JSON.toJSONString(unitItTable));
         writer.newLine();
       }
-      writer.close();
     } catch (IOException ex) {
       log.error("dumpAdUnitItTable error");
     }
@@ -292,7 +286,6 @@ public class DumpDataService {
         writer.write(JSON.toJSONString(unitKeywordTable));
         writer.newLine();
       }
-      writer.close();
     } catch (IOException ex) {
       log.error("dumpAdUnitItTable error");
     }
